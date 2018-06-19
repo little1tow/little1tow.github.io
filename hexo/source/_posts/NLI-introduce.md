@@ -4,6 +4,7 @@ date: 2018-05-28 20:33:28
 categories: notes
 tags: natural language inference
 description: 
+top: 100
 ---
 
 自然语言推理作为自然语言理解的一个重要组成部分，在整个自然语言理解中扮演着重要的角色，接下里我将对自然语言推理的现状做一简单总结，以下内容是我的小组分享的记录版。
