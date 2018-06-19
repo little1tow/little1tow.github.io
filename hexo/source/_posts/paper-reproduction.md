@@ -1,7 +1,8 @@
 ---
 title: Neural Network Models for Paraphrase Identification, Semantic Textual Similarity, Natural Language Inference, and Question Answering 
 date: 2018-06-17 21:15:44
-tags: paper_reading
+categories: paper_reading
+tags: [natural language understanding, natural language inference, semantic similarity]
 ---
 
 > Title: Neural Network Models for Paraphrase Identification, Semantic Textual Similarity, Natural Language Inference, and Question Answering 

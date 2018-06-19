@@ -1,7 +1,8 @@
 ---
 title: hexo+github搭建个人博客记录
 date: 2018-05-26 21:28:13
-tags: notes
+categories: notes
+tags: hexo
 ---
 
 作为一个工科生，但一直希望能够记录一些东西；同样作为一个工科生，有能力自己搭建博客。看了很多大神的github博客，最终决定也用hexo+github搭建一个自己的个人小站，记录下自己的一些足迹。

@@ -1,7 +1,8 @@
 ---
 title: 自然语言推理介绍
 date: 2018-05-28 20:33:28
-tags: natural_language_inference
+categories: notes
+tags: natural language inference
 description: 
 ---
 

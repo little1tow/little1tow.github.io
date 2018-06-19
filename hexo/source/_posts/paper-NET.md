@@ -1,7 +1,8 @@
 ---
 title: Improving Neural Fine-Grained Entity Typing with Knowledge Attention 
 date: 2018-06-17 21:15:32
-tags: paper_reading
+categories: paper_reading
+tags: [NET, KB]
 ---
 
 > Title: Improving Neural Fine-Grained Entity Typing with Knowledge Attention 

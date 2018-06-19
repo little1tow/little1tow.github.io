@@ -1,7 +1,8 @@
 ---
 title: 论文投稿有感
 date: 2018-06-06 21:05:53
-tags: others
+categories: others
+tags: paper-writing
 ---
 
 刚刚忙完了论文的投稿，虽说也写了几篇文章，但是进入依然十分缓慢，这次记录下自己在这次投稿过程中的感想，与君共勉
