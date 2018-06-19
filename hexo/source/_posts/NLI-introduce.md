@@ -4,6 +4,7 @@ date: 2018-05-28 20:33:28
 categories: notes
 tags: natural language inference
 description: 
+copyright: true
 top: 100
 ---
 
