@@ -2,17 +2,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next mist use-motion" lang="">
+<html class="theme-next mist use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
 <meta name="theme-color" content="#222">
 
 
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
 
 
 
@@ -38,10 +57,6 @@
 
 
 
-  
-  
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
-
 
 
 
@@ -50,45 +65,25 @@
 
 <link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="32x32" href="/uploads/favicon.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
 
 
-  <link rel="icon" type="image/png" sizes="16x16" href="/uploads/favicon.png?v=5.1.4">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
 
 
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
-
-
-
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
 
 
 
 
 
 
-
-
-
-
-<meta name="description" content="慢慢来，慢慢来，做个有趣的人">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小山界">
-<meta property="og:url" content="https://little1tow.github.io/index.html">
-<meta property="og:site_name" content="小山界">
-<meta property="og:description" content="慢慢来，慢慢来，做个有趣的人">
-<meta property="og:locale" content="default">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="小山界">
-<meta name="twitter:description" content="慢慢来，慢慢来，做个有趣的人">
 
 
 
@@ -97,15 +92,13 @@
   var CONFIG = {
     root: '/',
     scheme: 'Mist',
-    version: '5.1.4',
+    version: '6.6.0',
     sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: 'Author'
-    },
     algolia: {
       applicationID: '',
       apiKey: '',
@@ -117,12 +110,36 @@
 </script>
 
 
+  
+
+
+
+
+  <meta name="description" content="慢慢来，慢慢来，做个有趣的人">
+<meta property="og:type" content="website">
+<meta property="og:title" content="小山界">
+<meta property="og:url" content="https://little1tow.github.io/index.html">
+<meta property="og:site_name" content="小山界">
+<meta property="og:description" content="慢慢来，慢慢来，做个有趣的人">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小山界">
+<meta name="twitter:description" content="慢慢来，慢慢来，做个有趣的人">
+
+
+
+
+
 
   <link rel="canonical" href="https://little1tow.github.io/"/>
 
 
 
-
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
 
   <title>小山界</title>
   
@@ -134,9 +151,39 @@
 
 
 
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -153,19 +200,17 @@
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">小山界</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -173,112 +218,127 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            Home
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            Categories
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            About
-          </a>
-        </li>
+          
+          <li class="menu-item menu-item-home menu-item-active">
+
+    
+    
+    
       
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            Tags
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            Archives
-          </a>
-        </li>
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
       
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
 
       
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            Search
-          </a>
-        </li>
       
     </ul>
   
 
   
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="Searching..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
+    
 
+  
 
-
-    </div>
   
 </nav>
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
@@ -291,6 +351,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -300,7 +362,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -315,25 +377,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/28/NLI-introduce/" itemprop="url">自然语言推理介绍</a></h1>
+                
+                <a href="/2018/05/28/NLI-introduce/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">自然语言推理介绍</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-28T20:33:28+08:00">
-                2018-05-28
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-28 20:33:28" itemprop="dateCreated datePublished" datetime="2018-05-28T20:33:28+08:00">2018-05-28</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -346,14 +434,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a></span>
 
                 
                 
@@ -370,37 +454,6 @@
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2,792
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  9
-                </span>
-              
-            </div>
           
 
           
@@ -425,21 +478,33 @@
 自然语言推理主要是判断两个句子（Premise, Hypothesis）或者两个词之间的语义关系，为了保证模型能够集中
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/28/NLI-introduce/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/28/NLI-introduce/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -472,6 +537,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -481,7 +548,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -496,25 +563,51 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/30/2018-06-30/" itemprop="url">What Value Do Explicit High Level Concepts Have in Vision to Language Problems?</a></h1>
+                
+                <a href="/2018/06/30/2018-06-30/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">What Value Do Explicit High Level Concepts Have in Vision to Language Problems?</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T21:48:14+08:00">
-                2018-06-30
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-30 21:48:14" itemprop="dateCreated datePublished" datetime="2018-06-30T21:48:14+08:00">2018-06-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-01 00:27:34" itemprop="dateModified" datetime="2018-07-01T00:27:34+08:00">2018-07-01</time>
+              
             
           </span>
 
@@ -527,14 +620,10 @@
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -551,37 +640,6 @@
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,640
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
           
 
           
@@ -606,21 +664,33 @@ Title: What Value Do Explicit High Level Concepts Have in Vision to Language Pro
 Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/30/2018-06-30/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/30/2018-06-30/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -653,6 +723,8 @@ Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -662,7 +734,7 @@ Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -677,25 +749,51 @@ Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/07/04/2018-07-04/" itemprop="url">Neural Network for Named Entity Typing方法总结</a></h1>
+                
+                <a href="/2018/07/04/2018-07-04/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Neural Network for Named Entity Typing方法总结</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-04T20:15:04+08:00">
-                2018-07-04
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-04 20:15:04" itemprop="dateCreated datePublished" datetime="2018-07-04T20:15:04+08:00">2018-07-04</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-05 23:52:34" itemprop="dateModified" datetime="2018-07-05T23:52:34+08:00">2018-07-05</time>
+              
             
           </span>
 
@@ -708,14 +806,10 @@ Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -732,37 +826,6 @@ Authors: Qi Wu, Chunhua Shen, Lingqiao Liu, Anthony Dick, Anto
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  2,188
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  8
-                </span>
-              
-            </div>
           
 
           
@@ -788,21 +851,33 @@ Neural Fine-Grained Entity Type Classification with Hierarchy-Aware Loss
 Fine-
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/07/04/2018-07-04/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/07/04/2018-07-04/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -835,6 +910,8 @@ Fine-
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -844,7 +921,7 @@ Fine-
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -859,25 +936,51 @@ Fine-
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/30/2018-06-29/" itemprop="url">Semantic Sentence Matching with Densely-connected Recurrent and Co-attentive Information</a></h1>
+                
+                <a href="/2018/06/30/2018-06-29/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Semantic Sentence Matching with Densely-connected Recurrent and Co-attentive Information</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-30T21:48:07+08:00">
-                2018-06-30
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-30 21:48:07" itemprop="dateCreated datePublished" datetime="2018-06-30T21:48:07+08:00">2018-06-30</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-07-01 00:27:34" itemprop="dateModified" datetime="2018-07-01T00:27:34+08:00">2018-07-01</time>
+              
             
           </span>
 
@@ -890,14 +993,10 @@ Fine-
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -914,37 +1013,6 @@ Fine-
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,516
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
           
 
           
@@ -969,21 +1037,33 @@ Title: Semantic Sentence Matching with Densely-connected Recurrent and Co-attent
 Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/30/2018-06-29/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/30/2018-06-29/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1016,6 +1096,8 @@ Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1025,7 +1107,7 @@ Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1040,25 +1122,51 @@ Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/20/2018-06-20/" itemprop="url">Neural Architectures for Fine-grained Entity Type Classification</a></h1>
+                
+                <a href="/2018/06/20/2018-06-20/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Neural Architectures for Fine-grained Entity Type Classification</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-20T22:55:11+08:00">
-                2018-06-20
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-20 22:55:11" itemprop="dateCreated datePublished" datetime="2018-06-20T22:55:11+08:00">2018-06-20</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-26 23:04:37" itemprop="dateModified" datetime="2018-06-26T23:04:37+08:00">2018-06-26</time>
+              
             
           </span>
 
@@ -1071,14 +1179,10 @@ Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -1095,37 +1199,6 @@ Authors: Seonhoon Kim, Jin-Hyuk Hong, Inho Kang, Noju
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,925
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  8
-                </span>
-              
-            </div>
           
 
           
@@ -1151,21 +1224,33 @@ Author: Sonse Shimaoka, Pontus Stenetorp, Kentaro Inui, Sebastian Riedel
 Lin
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/20/2018-06-20/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/20/2018-06-20/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1198,6 +1283,8 @@ Lin
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1207,7 +1294,7 @@ Lin
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1222,25 +1309,51 @@ Lin
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/17/paper-reproduction/" itemprop="url">Neural Network Models for Paraphrase Identification, Semantic Textual Similarity, Natural Language Inference, and Question Answering</a></h1>
+                
+                <a href="/2018/06/17/paper-reproduction/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Neural Network Models for Paraphrase Identification, Semantic Textual Similarity, Natural Language Inference, and Question Answering</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-17T21:15:44+08:00">
-                2018-06-17
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-17 21:15:44" itemprop="dateCreated datePublished" datetime="2018-06-17T21:15:44+08:00">2018-06-17</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1253,14 +1366,10 @@ Lin
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -1277,37 +1386,6 @@ Lin
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,359
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  5
-                </span>
-              
-            </div>
           
 
           
@@ -1332,21 +1410,33 @@ Title: Neural Network Models for Paraphrase Identification, Semantic Textual Sim
 Author: 
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/17/paper-reproduction/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/17/paper-reproduction/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1379,6 +1469,8 @@ Author:
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1388,7 +1480,7 @@ Author:
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1403,25 +1495,51 @@ Author:
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/17/paper-NET/" itemprop="url">Improving Neural Fine-Grained Entity Typing with Knowledge Attention</a></h1>
+                
+                <a href="/2018/06/17/paper-NET/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Improving Neural Fine-Grained Entity Typing with Knowledge Attention</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-17T21:15:32+08:00">
-                2018-06-17
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-17 21:15:32" itemprop="dateCreated datePublished" datetime="2018-06-17T21:15:32+08:00">2018-06-17</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1434,14 +1552,10 @@ Author:
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -1458,37 +1572,6 @@ Author:
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,615
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
           
 
           
@@ -1514,21 +1597,33 @@ Author: Ji Xin,  Yankai Lin, Zhiyuan Liu, Maosong Sun
 Link: http://nlp.c
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/17/paper-NET/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/17/paper-NET/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1561,6 +1656,8 @@ Link: http://nlp.c
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1570,7 +1667,7 @@ Link: http://nlp.c
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1585,25 +1682,51 @@ Link: http://nlp.c
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/07/paper-20180607/" itemprop="url">Sentence Modeling via Multiple Word Embeddings and Multi-level Comparison for Semantic Textual Similarity</a></h1>
+                
+                <a href="/2018/06/07/paper-20180607/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">Sentence Modeling via Multiple Word Embeddings and Multi-level Comparison for Semantic Textual Similarity</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-07T20:53:13+08:00">
-                2018-06-07
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-07 20:53:13" itemprop="dateCreated datePublished" datetime="2018-06-07T20:53:13+08:00">2018-06-07</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1616,14 +1739,10 @@ Link: http://nlp.c
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/paper-reading/" itemprop="url" rel="index">
-                    <span itemprop="name">paper_reading</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
 
                 
                 
@@ -1640,37 +1759,6 @@ Link: http://nlp.c
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,456
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  6
-                </span>
-              
-            </div>
           
 
           
@@ -1696,21 +1784,33 @@ Different word embedding models capture different aspects of linguistic properit
 
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/07/paper-20180607/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/07/paper-20180607/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1743,6 +1843,8 @@ Different word embedding models capture different aspects of linguistic properit
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1752,7 +1854,7 @@ Different word embedding models capture different aspects of linguistic properit
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1767,25 +1869,51 @@ Different word embedding models capture different aspects of linguistic properit
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/06/06/After-Writing/" itemprop="url">论文投稿有感</a></h1>
+                
+                <a href="/2018/06/06/After-Writing/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">论文投稿有感</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-06T21:05:53+08:00">
-                2018-06-06
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-06-06 21:05:53" itemprop="dateCreated datePublished" datetime="2018-06-06T21:05:53+08:00">2018-06-06</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1798,14 +1926,10 @@ Different word embedding models capture different aspects of linguistic properit
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/others/" itemprop="url" rel="index">
-                    <span itemprop="name">others</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/others/" itemprop="url" rel="index"><span itemprop="name">others</span></a></span>
 
                 
                 
@@ -1822,37 +1946,6 @@ Different word embedding models capture different aspects of linguistic properit
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,917
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  7
-                </span>
-              
-            </div>
           
 
           
@@ -1876,21 +1969,33 @@ Different word embedding models capture different aspects of linguistic properit
 Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的工作的卖点，不能使用那些会造成误解的词，否则开头就容易把人带偏，就像我这次，开始使用的是Hierarchical，后来改成了Mu
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/06/06/After-Writing/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/06/06/After-Writing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -1923,6 +2028,8 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -1932,7 +2039,7 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="zhkun_ustc">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
       <meta itemprop="image" content="/uploads/touxiang.jpg">
     </span>
 
@@ -1947,25 +2054,51 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/26/blog-start/" itemprop="url">hexo+github搭建个人博客记录</a></h1>
+                
+                <a href="/2018/05/26/blog-start/" class="post-title-link" itemprop="https://little1tow.github.io/index.html">hexo+github搭建个人博客记录</a>
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-26T21:28:13+08:00">
-                2018-05-26
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-05-26 21:28:13" itemprop="dateCreated datePublished" datetime="2018-05-26T21:28:13+08:00">2018-05-26</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-06-19 23:03:38" itemprop="dateModified" datetime="2018-06-19T23:03:38+08:00">2018-06-19</time>
+              
             
           </span>
 
@@ -1978,14 +2111,10 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
                 <i class="fa fa-folder-o"></i>
               </span>
               
-                <span class="post-meta-item-text">In</span>
+                <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/notes/" itemprop="url" rel="index">
-                    <span itemprop="name">notes</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/notes/" itemprop="url" rel="index"><span itemprop="name">notes</span></a></span>
 
                 
                 
@@ -2002,37 +2131,6 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
           
 
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Words count in article&#58;</span>
-                
-                <span title="Words count in article">
-                  1,333
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Reading time &asymp;</span>
-                
-                <span title="Reading time">
-                  5
-                </span>
-              
-            </div>
           
 
           
@@ -2056,21 +2154,33 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 搭建步骤github建立repository在自己的github上新建repository，要注意的是
           ...
           <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/26/blog-start/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2018/05/26/blog-start/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
           <!--/noindex-->
         
       
     </div>
+
+    
+
     
     
     
 
+    <div>
+      
+    </div>
+
     
 
+    
+       
+    
     
 
     
@@ -2099,15 +2209,12 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
 
           </div>
-          
-
-
           
 
         </div>
@@ -2142,87 +2249,156 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
               <p class="site-description motion-element" itemprop="description">慢慢来，慢慢来，做个有趣的人</p>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">posts</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">16</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
-                  <span class="site-state-item-name">categories</span>
-                </a>
-              </div>
-            
-
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
-                  <span class="site-state-item-name">tags</span>
-                </a>
-              </div>
-            
-
-          </nav>
+            </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/little1tow" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.jianshu.com/u/023624abc05a" target="_blank" title="简书">
-                      
-                        <i class="fa fa-fw fa-heartbeat"></i>简书</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.zhihu.com/people/zhkun_ustc" target="_blank" title="知乎">
-                      
-                        <i class="fa fa-fw fa-paperclip"></i>知乎</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" target="_blank" title="微博">
-                      
-                        <i class="fa fa-fw fa-weibo"></i>微博</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="734866493" target="_blank" title="QQ">
-                      
-                        <i class="fa fa-fw fa-qq"></i>QQ</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/little1tow" title="GitHub &rarr; https://github.com/little1tow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/023624abc05a" title="简书 &rarr; https://www.jianshu.com/u/023624abc05a" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/zhkun_ustc" title="知乎 &rarr; https://www.zhihu.com/people/zhkun_ustc" rel="noopener" target="_blank"><i class="fa fa-fw fa-paperclip"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" title="微博 &rarr; https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/734866493" title="QQ &rarr; 734866493"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
             </div>
           
 
           
-          
 
           
           
 
+          
+            
+          
           
 
         </div>
@@ -2242,17 +2418,32 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
-  <span class="with-love">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">zhkun_ustc</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      本站访客数:<span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+    <div class="powered-by"></div>
+      <span class="post-count">博客全站共17.8k字</span>
+      <span class="post-meta-divider">|</span>
+  </div>
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
 
 
 
@@ -2260,35 +2451,12 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
 
 
 
 
-<div class="theme-info">
-  <div class="powered-by">|</div>
-  <span class="post-count">博客全站共17.8k字</span>
-</div>
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      <i class="fa fa-user"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      <i class="fa fa-eye"></i>
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
 
 
 
@@ -2309,7 +2477,10 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
     
 
     
+	
+    
 
+    
   </div>
 
   
@@ -2328,7 +2499,11 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
 
 
-  
+
+
+
+
+
 
 
 
@@ -2348,16 +2523,6 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
   
   
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
     <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   
 
@@ -2366,18 +2531,13 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
     <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
   
 
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
 
 
 
@@ -2389,27 +2549,11 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
   
 
 
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
 
 
 
   
-
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
-
-
 
 
 
@@ -2424,363 +2568,91 @@ Title标题是整篇文章的开头，一定要清晰直接的介绍出自己的
 
 
 
+  
+
+
+
 
 
   
 
-  <script type="text/javascript">
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
+  
 
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
+  
 
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
+  
 
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
+  
+  
 
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
 
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
     });
+</script>
 
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
         for (i=0; i < all.length; i += 1) {
           all[i].SourceElement().parentNode.className += ' has-jax';
         }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
   
 
+
+  
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
