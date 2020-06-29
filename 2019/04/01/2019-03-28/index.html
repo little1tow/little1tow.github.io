@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Title: Image-Question-Answer Synergistic Network for Visual Dialog Authors: Dalu Guo, Chang Xu, Dacheng Tao  Link: https://arxiv.org/abs/1902.09774  Motivation Visual Dialog作为Visual-to-Language中十分重要的">
+<meta name="keywords" content="Image,Visual Dialog,VQA,Sentence">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Image-Question-Answer Synergistic Network for Visual Dialog">
+<meta property="og:url" content="https://little1tow.github.io/2019/04/01/2019-03-28/index.html">
+<meta property="og:site_name" content="小山界">
+<meta property="og:description" content="Title: Image-Question-Answer Synergistic Network for Visual Dialog Authors: Dalu Guo, Chang Xu, Dacheng Tao  Link: https://arxiv.org/abs/1902.09774  Motivation Visual Dialog作为Visual-to-Language中十分重要的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-1.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-3.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-7.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-8.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-9.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-10.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-11.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-12.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-13.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-5.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-6.JPG">
+<meta property="og:updated_time" content="2020-06-28T16:38:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Image-Question-Answer Synergistic Network for Visual Dialog">
+<meta name="twitter:description" content="Title: Image-Question-Answer Synergistic Network for Visual Dialog Authors: Dalu Guo, Chang Xu, Dacheng Tao  Link: https://arxiv.org/abs/1902.09774  Motivation Visual Dialog作为Visual-to-Language中十分重要的">
+<meta name="twitter:image" content="https://little1tow.github.io/2019/04/01/2019-03-28/2019-03-28-1.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="https://little1tow.github.io/2019/04/01/2019-03-28/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Image-Question-Answer Synergistic Network for Visual Dialog | 小山界</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小山界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://little1tow.github.io/2019/04/01/2019-03-28/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkun_ustc">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
+      <meta itemprop="image" content="/uploads/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小山界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Image-Question-Answer Synergistic Network for Visual Dialog
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-01 11:27:54" itemprop="dateCreated datePublished" datetime="2019-04-01T11:27:54+08:00">2019-04-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-29 00:38:58" itemprop="dateModified" datetime="2020-06-29T00:38:58+08:00">2020-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Title: Image-Question-Answer Synergistic Network for Visual Dialog</p>
+<p>Authors: Dalu Guo, Chang Xu, Dacheng Tao </p>
+<p>Link: <a href="https://arxiv.org/abs/1902.09774" target="_blank" rel="noopener">https://arxiv.org/abs/1902.09774</a></p>
+</blockquote>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p><img src="/2019/04/01/2019-03-28/2019-03-28-1.JPG" alt="example"></p>
+<p>Visual Dialog作为Visual-to-Language中十分重要的一个应用，受到了越来越多的关注。如上图所示，该任务主要实施根据给出的图像，图像描述，历史对话，问题挑选出或者生成对应的答案，可以认为是一种更加复杂的VQA。典型的Visual Dialog模型一般都是融合图像，问题和历史对话内容，然后搜索或者生成最适合的答案，这就出现了一个问题，模型会更倾向于输出安全的答案，例如：yes，no等，这些答案符合情境。但是针对对话而言，这类非常短的答案完全就是对话终结者，让人找不到继续对话下去的理由。因此，在Visual Dialog中也需要考虑最后的答案扮演的角色，而不仅仅是将其作为一个输出。因此本文提出了一种图像-问题-答案协同模型，将传统的一阶段模型扩展为两阶段模型，在第一阶段根据答案和图像，问题的关联性进行粗略的选择或评分，在第二阶段，那些概率高的答案会通过与图像和问题的协同分析，以一个更细的粒度进行重新排序，从而最终选出更加符合情境的答案。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>首先是模型框架：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-3.JPG" alt="model structure"></p>
+<p>模型主要分为两阶段：第一阶段：对结果进行粗略的打分，第二阶段：对概率高的结果进行细粒度的分析，从而更好的选择出符合情境的答案。</p>
+<p>首先是对模型的所有输入的处理，对图像，本文使用了Faster-RCNN来得到图像的特征表示$V = (v_1, v_2, …, v_n)$，对于问题$q_t$，使用一个LSTM处理，得到问题的表示$m_t^q = LSTM(q_t)$，对于历史对话（包含图像描述）， $H = (H_0, … , H_{t-1})$，其中$H_0$表示的是图像描述，而$H_i$是第i轮的问题和答案的拼接，$H_i=(q_i, a_{i,gt})$，同样也是使用LSTM处理历史对话，得到历史特征$U=(u_0, u_1, …, u_{t-1})$，其中$u_i = LSTM(H_i)$，是LSTM的最后一个隐层状态。这样就得到了标准的输入，从而可以开始两阶段的建模分析。</p>
+<p>在介绍两阶段的细节之前，首先介绍本文中使用的比较多的一个注意力计算方法，multi-modal factorized bilinear pooling (MFB)，这种方法可以可以克服两种特征分布的不同（例如：编码问题和历史对话的LSTM的输出，编码文本和图像的特征），从而实现特征之间的高效融合。在该计算方法中，两个特征$X, Y$之间的融合计算方法为：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-7.JPG" alt="formulation 1"></p>
+<p>其中，$U, V$是参数，$k$是因子数，类似于multi-head attention中的head数量，为了使输出的稳定性更好，在本文中，作者加上了power normalization：$z \leftarrow sign(z)|z|^{0.5}$ 和L2 normalization：$z \leftarrow z/||z||$。以上整个过程记为$z = MFB(X, Y)$.</p>
+<h3 id="Primary-Stage"><a href="#Primary-Stage" class="headerlink" title="Primary Stage"></a>Primary Stage</h3><p>首先是获取问题$m_t^q$ 和历史对话 $U$ 的交互关系，常用的attention操作，计算出两者之间的attention，然后使用历史对话得到问题的另一种表示，具体如下：</p>
+<p>$$z_t^h=MFB_h(m_t^q, U), \ \alpha_t^h = softmax(\omega_{\alpha}^Tz_t^h), \ m_t^h = \sum_{i=1}^{t-1}(\alpha_{t,i}^hu_i)$$</p>
+<p>通过该公式，就可以得到问题需要关注哪部分历史对话信息，接下来就是将$m_t^h$和问题向量$m_t^q$ 作拼接，然后使用相同的注意力计算方式得到那部分图像信息需要被关注，即$z_t^v = MFB_v([m_t^q; m_t^h], V)$. 这样就得到了利用需要关注的图像特征表示的问题$m_t^v$，最后就可以学习到文本和图像的联合表示 $e_t^p = MFB_e([m_t^q; m_t^h], m_t^v)$</p>
+<p>得到了文本和图像的联合表示之后，本文将visual dialog中的答案也考虑到建模过程中，而不是简单的做分类，那么首先就是利用一个LSTM将每个候选答案$a_{t, i} \in A_t$ 进行编码，然后计算和图像文本联合表示之间的相似度</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-8.JPG" alt="formulation 2"></p>
+<p>其中$f_d$是一个一层的MLP，使用tanh作为激活函数，因为该函数计算出的是候选答案和联合表示之间的相似度，那么正确答案的相似度应该是最高的，因此本文使用了N-pair loss，同时为了解决不平衡问题，本文增加了一个缩放系数（temperature）去降低不平衡的影响，具体如下公式：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-9.JPG" alt="formulation 3"></p>
+<p>其中$\tau \leq 1$, 如果候选答案被正确打分，并且该分数是小鱼ground truth的，那么改候选答案的损失$l_{t, i} = s_{t, i}^d - s_{t, gt}^d$ 就会小于0，而$\tau$ 就可以降低该答案对整个模型的影响，从而保证了模型的效果。</p>
+<p>至此，该阶段就完成了目标，对所有的候选答案进行粗略打分。</p>
+<h3 id="Synergistic-Stage"><a href="#Synergistic-Stage" class="headerlink" title="Synergistic Stage"></a>Synergistic Stage</h3><p>在第一阶段，由于打分函数或者其他问题，有些答案可能得到了不太合适的分数，因此该阶段的主要任务就是根据图像和问题对评分比较高的答案进行重新排序，（<em>即在第一阶段正确答案可能得到了比较高的分数，但不是最高的，如果直接根据第一阶段的分数来选出最后的答案的话，有可能会正确答案，但会错过最优选项，因此在该阶段对所有看似正确的答案进行重拍，从而选出最有答案</em>）。并且本文也通过实验证明了top 10的答案基本上覆盖了90%的正确答案，因此本文从答案集合$A_t$中选出了top N的结果，组成了新的答案集合$B_t = (b_{t,1}, …, b_{t,N})$</p>
+<p>而在处理答案过程中，因为一些答案很短，例如NO, Black and Grey等，并没有什么具体的含义，因此这里是将每个答案和问题进行拼接，然后将其送个LSTM进行处理</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-10.JPG" alt="formulation 4"></p>
+<p>为了将该信息与历史对话以及图像信息进行联合建模，本文使用了和第一阶段相同的方法进行处理，但不同的是这里直接使用了第一阶段计算出来的历史对话加权向量表示，去计算对图像的注意力参数</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-11.JPG" alt="formulation 5"></p>
+<p>然后就是使用相同的注意力处理方式，对候选答案$b_{t,j}$ 进行加权表示，得到了需要关注的图像特征表示$m_{t, j}^r$，最后对这些内容做融合，$e_{t, j}^r = MFB_r([m_{t, j}^b; m_t^h], m_{t, j}^r)$，该向量表示的是和图像，问题以及历史对话进行协同建模之后的答案向量表示，最后将该向量表示送给一个一层的MLP进行打分，</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-12.JPG" alt="formulation 6"></p>
+<p>最后的最后，就是使用一个softmax函数进行分类，最合适的答案将拥有最高的概率。</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><p>本文是在<a href="https://visualdialog.org" target="_blank" rel="noopener">Visual Dialog V1.0</a>数据上进行相关实验的，评价标准使用的时一个鲁棒性更好的标准NDCG，而不是传统的检索指标，相关计算方式如下：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-13.JPG" alt="formulation 8"></p>
+<p>接下来是实验结果：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-5.JPG" alt="result"></p>
+<p>可以看出模型在几乎所有评价标准上都取得了最好的表示，当然直接看结果不够直观，本文也提供了一些case study，如下图：</p>
+<p><img src="/2019/04/01/2019-03-28/2019-03-28-6.JPG" alt="case study"></p>
+<p>从结果上看，第一阶段虽然会选出来正确的结果，但是经过第二阶段之后，模型能够选出来更符合情境的答案，不仅仅是对问题的简单回答，而且包含了一些细节，这是非常有意思的一点，感觉这部分值得深入做一做，不仅仅说能够提供正确答案，同时还能提供对应的细节信息，从而使答案更局有说服力。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文聚焦于Visual Dialog任务中的答案上，提出了模型不仅仅需要给出正确的答案，还要给出更符合情境的答案，细节决定成败，尤其是在对话任务中，单单一个正确的答案并不能维持或者引导整个对话的进行，还需要有相应的细节信息，这样不仅能够使回答更具有说服力，而且为对话的维持提供了更多的可能，因此也更吸引人，本文的这个motivation还是非常有意思的，赞一个</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="zhkun_ustc 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Image/" rel="tag"><i class="fa fa-tag"></i> Image</a>
+          
+            <a href="/tags/Visual-Dialog/" rel="tag"><i class="fa fa-tag"></i> Visual Dialog</a>
+          
+            <a href="/tags/VQA/" rel="tag"><i class="fa fa-tag"></i> VQA</a>
+          
+            <a href="/tags/Sentence/" rel="tag"><i class="fa fa-tag"></i> Sentence</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/20/2019-03-20/" rel="next" title="DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching">
+                <i class="fa fa-chevron-left"></i> DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/2019-03-29/" rel="prev" title="Multi-step Reasoning via Recurrent Dual Attention for Visual Dialog">
+                Multi-step Reasoning via Recurrent Dual Attention for Visual Dialog <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/touxiang.jpg"
+                alt="zhkun_ustc" />
+            
+              <p class="site-author-name" itemprop="name">zhkun_ustc</p>
+              <p class="site-description motion-element" itemprop="description">慢慢来，慢慢来，做个有趣的人</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/little1tow" title="GitHub &rarr; https://github.com/little1tow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/023624abc05a" title="简书 &rarr; https://www.jianshu.com/u/023624abc05a" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/zhkun_ustc" title="知乎 &rarr; https://www.zhihu.com/people/zhkun_ustc" rel="noopener" target="_blank"><i class="fa fa-fw fa-paperclip"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" title="微博 &rarr; https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/734866493" title="QQ &rarr; 734866493"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Primary-Stage"><span class="nav-number">2.1.</span> <span class="nav-text">Primary Stage</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synergistic-Stage"><span class="nav-number">2.2.</span> <span class="nav-text">Synergistic Stage</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-number">3.</span> <span class="nav-text">Experiment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhkun_ustc</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      本站访客数:<span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+    <div class="powered-by"></div>
+      <span class="post-count">博客全站共34.2k字</span>
+      <span class="post-meta-divider">|</span>
+  </div>
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

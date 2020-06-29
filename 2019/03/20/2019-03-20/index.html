@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Title: DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching Authors: Kun Zhang, Guangyi Lv, Linyuan Wang, Le Wu, Enhong Chen, Fangzhao Wu, Xing Xie Link: https://www.aaai.org/Papers/AAAI/2">
+<meta name="keywords" content="sentence matching,NLI,attention mechanism">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching">
+<meta property="og:url" content="https://little1tow.github.io/2019/03/20/2019-03-20/index.html">
+<meta property="og:site_name" content="小山界">
+<meta property="og:description" content="Title: DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching Authors: Kun Zhang, Guangyi Lv, Linyuan Wang, Le Wu, Enhong Chen, Fangzhao Wu, Xing Xie Link: https://www.aaai.org/Papers/AAAI/2">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-1.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-2.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-3.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-4.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-5.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-6.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-7.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-8.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-9.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-10.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-12.JPG">
+<meta property="og:updated_time" content="2020-06-28T16:38:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching">
+<meta name="twitter:description" content="Title: DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching Authors: Kun Zhang, Guangyi Lv, Linyuan Wang, Le Wu, Enhong Chen, Fangzhao Wu, Xing Xie Link: https://www.aaai.org/Papers/AAAI/2">
+<meta name="twitter:image" content="https://little1tow.github.io/2019/03/20/2019-03-20/2019-03-20-1.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="https://little1tow.github.io/2019/03/20/2019-03-20/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching | 小山界</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小山界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://little1tow.github.io/2019/03/20/2019-03-20/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkun_ustc">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
+      <meta itemprop="image" content="/uploads/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小山界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-20 22:10:42" itemprop="dateCreated datePublished" datetime="2019-03-20T22:10:42+08:00">2019-03-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-29 00:38:58" itemprop="dateModified" datetime="2020-06-29T00:38:58+08:00">2020-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Title: DRr-Net: Dynamic Re-read Network for Sentence Semantic Matching</p>
+<p>Authors: Kun Zhang, Guangyi Lv, Linyuan Wang, Le Wu, Enhong Chen, Fangzhao Wu, Xing Xie</p>
+<p>Link: <a href="https://www.aaai.org/Papers/AAAI/2019/AAAI-ZhangKun.5147.pdf" target="_blank" rel="noopener">https://www.aaai.org/Papers/AAAI/2019/AAAI-ZhangKun.5147.pdf</a></p>
+</blockquote>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>语义理解与语义表征一直是自然语言理解中基础但十分关键的一个内容，得益于大规模的数据和先进的深度学习技术，机器在具体的任务上的表现越来越接近人类表现，这其中注意力机制（Attention Mechanism）扮演着一个不可或缺的角色，它可以帮助模型选择出句子中对语义表达最重要的信息，从而生成一种更好地语义表示向量，但是大多数的方法都是一次性的选择出所有重要的信息，该方法明显是不够合理的。事实上，人在阅读的时候，会根据已学习到的信息去动态选择需要关注的内容。更具体的，认知心理学实验发现人在阅读的时候有两个特点：1）<strong>人对句子中的词序其实并没有很敏感，即使打乱顺序我们依然能够理解</strong>; 2) <strong>人在阅读时候倾向于阅读多遍关键信息，从而实现对句子语义的精确理解</strong>，如下图的例子：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-1.JPG" alt="眼动仪结果及乱序的句子"></p>
+<p>左图是利用眼球追踪仪得到的注意力分布，可以看到有些词被反复阅读，而有些词并没有被阅读到。右图虽然词序是乱的，但是我们可以利用丰富的先验知识自动纠正这种错误，从而理解句子要表达的语义。基于以上的两个现象，本文提出了一种<strong>Dynamic Re-read</strong>机制，通过对重点内容的自动选择和反复阅读，从而实现对语义的精确理解。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>首先是模型框架</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-2.JPG" alt="model structure"></p>
+<p>模型可以大致分为三个模块，</p>
+<ul>
+<li>Input Embedding：利用充足的特征信息对输入的每个词和每个句子进行编码</li>
+<li>Dynamic Re-read Mechanism：每一步只关注一个最重要的词，并且反复对重要的内容进行理解</li>
+<li>Label Prediction：对输入的两个句子之际的关系进行分类</li>
+</ul>
+<p>接下来，文中从这三个方面对整个模型进行详细分析</p>
+<h3 id="Input-Embedding"><a href="#Input-Embedding" class="headerlink" title="Input Embedding"></a>Input Embedding</h3><p>对词的编码是一个常规操作，文本使用了预训练的词向量（glove 840d），字符级别的embedding，以及一些人工特征，然后将其拼接起来，为了更好地表示每个词的语义信息，本文将其通过一个两层的高速网络（Highway Network），最终得到每个词的语义表示${a_i | i = 1,2, … , l_a}$和${b_j|j=1,2,…,l_b}$</p>
+<p>众所周知，人类拥有丰富的先验知识，因此可以利用这些知识直接选择出句子中对语义表示重要的词，但这对模型而言是非常难的，因此，模型首先要做的就是对整个句子的全面理解，尽可能多的了解句子信息，这样才能为更好的理解句子语义奠定基础。为了实现这个目的，本文设计了一种修改版的Stack-RNN，它将$（l-1）$层的输入和输出拼接起来，作为$l$层的输入，通过这种类残差的结构，模型就能够保留所有的信息，该过程可以形式化为：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-3.JPG" alt="formula1"></p>
+<p>其中，$H_l$表示$l$层的RNN，这里使用的GRU作为RNN的基本单元。接下来要做的就是如何压缩这些词的向量表示，从全局的角度对句子语义进行向量表示。得益于自注意力机制（Self-attention），本文在Stack-RNN的最后输出上做self-attention，从而抽取对语义表示重要的信息，将这些信息加权求和，得到句子的全局语义表示，在文中，作者称之为original sentence representation，该过程可以由如下表示：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-4.JPG" alt="self-attention"></p>
+<h3 id="Dynamic-Re-read-Mechanism"><a href="#Dynamic-Re-read-Mechanism" class="headerlink" title="Dynamic Re-read Mechanism"></a>Dynamic Re-read Mechanism</h3><p>该模块主要是受人在阅读时的习惯启发而设计出来的，人在阅读时：1）<strong>人对句子中的词序其实并没有很敏感，即使打乱顺序我们依然能够理解</strong>; 2) <strong>人在阅读时候倾向于阅读多遍关键信息，从而实现对句子语义的精确理解</strong>。因此该模块要实现的目标就是如何根据已学习到的知识在每一步选择一个重要的词进行理解，以及这些重要的词该如何处理。首先，整体的过程可以形式化为：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-5.JPG" alt="Dynamic Re-read"></p>
+<p>即先通过一个选择函数，在整个输入序列中选出第$t$步的输入，然后将该输入送给一个GRU，而最后重要信息表示向量使用的是GRU的最后一个输出状态，因为GRU的在每个时刻的输入是动态变化的，因此作者将其称之为Dynamic。从该公式可以看出选择函数需要的输入有三个：a句子的整个序列，动态RNN的前一个时刻的隐层状态，b句子的全局语义表示，因为该模型针对的是句子语义匹配任务，因此作者将b句子的全局语义表示作为一个额外的context信息，这样模型就能更好的选择出符合上下文的语义信息。针对选择函数，作者利用了注意力机制来实现选择过程：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-6.JPG" alt="choose function"></p>
+<p>相当于通过注意力机制在整个序列上计算出来当前时刻的重要程度分布，然后选择最大的权值对应的词，将这个词作为当前时刻的输入，然后将其送给GRU，但是，该过程有一个问题，最后一个公式选择出索引的操作是不可导的，这里作者做了一个trick，对softmax函数加了一个任意大的常数$\beta$，这样权值最大的就趋近于1了，而其他的权值就趋近于0了，通过这种近似的方法，实现了最后的选择操作，并保证可导。因此，上式可以修改为：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-7.JPG" alt="modification"></p>
+<p>这就完成了整个动态选择的过程</p>
+<h3 id="Label-Prediction"><a href="#Label-Prediction" class="headerlink" title="Label Prediction"></a>Label Prediction</h3><p>经过前两个模块，模型就生成了全局语义表示和局部重要表示，接下来作者通过启发式的拼接操作来整合这些信息，具体可以通过如下公式表示：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-8.JPG" alt="fusion"></p>
+<p>这里是分别使用了不同的语义表示进行分类，为了是结果更准确，鲁棒性更好，作者设计了一个简单的加权方式将这两个结果进行融合，从而最终进行分类。</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-9.JPG" alt="classification"></p>
+<p>以上就是模型的整体结构。</p>
+<p>该模型的创新点主要集中在Dynamic Re-read机制的设计上，作者通过模仿人的阅读习惯，每次只选择一个重要的词，然后对这些重要的词进行反复阅读，从而实现对句子语义的准确理解。</p>
+<h2 id="Experimental-Results"><a href="#Experimental-Results" class="headerlink" title="Experimental Results"></a>Experimental Results</h2><p>首先是实验结果图</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-10.JPG" alt="experiment result"></p>
+<p>作者在两个任务，三个数据集上进行了测试，从实验结果上看，模型取得了非常不错的效果。同时为了验证模型的有效性，作者还对每个模块进行了验证，从结果上看，这其中最重要的还是全局的语义表示，重要信息的局部表示是在最好的结果上进行了提升，其重要程度要弱于全局语义表示。个人推测人在阅读时可以利用丰富的先验知识去直接挑选重要信息，而这对模型来说就有些困难了，他需要首先做的是对句子信息的整体把握，否则很难取得很好的效果。如果单纯只挑重要的信息的话，模型很难对句子语义有一个全面的表达。所以全局的语义表示对模型而言还是非常重要的。</p>
+<p>为了更好地展示模型的能力，作者同时也进行了一些case study，如下图：</p>
+<p><img src="/2019/03/20/2019-03-20/2019-03-20-12.JPG" alt="case study"></p>
+<p>从结果上看，模型确实选择出了非常重要的词，但同时模型也在重复这些词，有时候甚至只重复一个词，最终导致模型得出错误的结论，这可能跟动态选择的过程是一个非监督的过程有关，这点还是值得仔细思考的。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文通过利用人的阅读习惯，将注意力机制一次性选择所有重要的信息的机制修改为根据上下文动态选择重要的信息，并通过全局的表示和局部的表示对句子语义进行更全面的理解表示，是一个非常有意思的工作。按照作者的思路，在相关的领域，例如semantic matching， Visual Question Answering等方面都可以进行一些尝试，这是一个很值得研究的工作。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="zhkun_ustc 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/sentence-matching/" rel="tag"><i class="fa fa-tag"></i> sentence matching</a>
+          
+            <a href="/tags/NLI/" rel="tag"><i class="fa fa-tag"></i> NLI</a>
+          
+            <a href="/tags/attention-mechanism/" rel="tag"><i class="fa fa-tag"></i> attention mechanism</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/19/2019-03-19/" rel="next" title="Image-Enhanced Multi-Level Sentence Representation Net for Natural Language Inference">
+                <i class="fa fa-chevron-left"></i> Image-Enhanced Multi-Level Sentence Representation Net for Natural Language Inference
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/01/2019-03-28/" rel="prev" title="Image-Question-Answer Synergistic Network for Visual Dialog">
+                Image-Question-Answer Synergistic Network for Visual Dialog <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/touxiang.jpg"
+                alt="zhkun_ustc" />
+            
+              <p class="site-author-name" itemprop="name">zhkun_ustc</p>
+              <p class="site-description motion-element" itemprop="description">慢慢来，慢慢来，做个有趣的人</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/little1tow" title="GitHub &rarr; https://github.com/little1tow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/023624abc05a" title="简书 &rarr; https://www.jianshu.com/u/023624abc05a" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/zhkun_ustc" title="知乎 &rarr; https://www.zhihu.com/people/zhkun_ustc" rel="noopener" target="_blank"><i class="fa fa-fw fa-paperclip"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" title="微博 &rarr; https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/734866493" title="QQ &rarr; 734866493"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Embedding"><span class="nav-number">2.1.</span> <span class="nav-text">Input Embedding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dynamic-Re-read-Mechanism"><span class="nav-number">2.2.</span> <span class="nav-text">Dynamic Re-read Mechanism</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Label-Prediction"><span class="nav-number">2.3.</span> <span class="nav-text">Label Prediction</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experimental-Results"><span class="nav-number">3.</span> <span class="nav-text">Experimental Results</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhkun_ustc</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      本站访客数:<span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+    <div class="powered-by"></div>
+      <span class="post-count">博客全站共34.2k字</span>
+      <span class="post-meta-divider">|</span>
+  </div>
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

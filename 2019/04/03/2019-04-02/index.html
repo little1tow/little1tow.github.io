@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.6.0',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Title: Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions  Authors: Marcella Cornia, Lorenzo Baraldi, Rita Cucchiara  Link: https://arxiv.org/abs/1811.10652  Motiva">
+<meta name="keywords" content="Image,Sentence,Image Caption,Sentinel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions">
+<meta property="og:url" content="https://little1tow.github.io/2019/04/03/2019-04-02/index.html">
+<meta property="og:site_name" content="小山界">
+<meta property="og:description" content="Title: Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions  Authors: Marcella Cornia, Lorenzo Baraldi, Rita Cucchiara  Link: https://arxiv.org/abs/1811.10652  Motiva">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-1.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-2.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-3.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-5.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-6.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-7.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-8.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-9.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-10.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-11.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-12.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-13.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-14.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-15.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-16.JPG">
+<meta property="og:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-4.JPG">
+<meta property="og:updated_time" content="2020-06-28T16:38:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions">
+<meta name="twitter:description" content="Title: Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions  Authors: Marcella Cornia, Lorenzo Baraldi, Rita Cucchiara  Link: https://arxiv.org/abs/1811.10652  Motiva">
+<meta name="twitter:image" content="https://little1tow.github.io/2019/04/03/2019-04-02/2019-04-02-1.JPG">
+
+
+
+
+
+
+  <link rel="canonical" href="https://little1tow.github.io/2019/04/03/2019-04-02/"/>
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions | 小山界</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小山界</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br />分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br />归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://little1tow.github.io/2019/04/03/2019-04-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhkun_ustc">
+      <meta itemprop="description" content="慢慢来，慢慢来，做个有趣的人">
+      <meta itemprop="image" content="/uploads/touxiang.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小山界">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-03 10:18:06" itemprop="dateCreated datePublished" datetime="2019-04-03T10:18:06+08:00">2019-04-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-29 00:38:58" itemprop="dateModified" datetime="2020-06-29T00:38:58+08:00">2020-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/paper-reading/" itemprop="url" rel="index"><span itemprop="name">paper_reading</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>Title: Show, Control and Tell: A Framework for Generating Controllable and Grounded Captions </p>
+<p>Authors: Marcella Cornia, Lorenzo Baraldi, Rita Cucchiara </p>
+<p>Link: <a href="https://arxiv.org/abs/1811.10652" target="_blank" rel="noopener">https://arxiv.org/abs/1811.10652</a></p>
+</blockquote>
+<h2 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h2><p>Image captioning作为Visual-to-Language中一个十分传统的研究领域，每年都会提出一些新的方法，新的模型来生成符合图像的描述。但是整个过程到目前为止一直都是end-to-end，或者说是一个黑盒模型。而同一个图像可以有无数种不同的表述方法，注意力机制虽然可以帮助模型聚焦到图像的某一块，但该过程基本上是不可控的。如何增加生成过程的可控性，根据需要生成相应的描述称为image captioning的一个新的研究方向。而且该方向明显具有更大的应用潜力和实用价值。如下图：利用图像特征，甚至加上注意力机制，但最终生成的描述都是比较类似的。当对需要生成的对象进行控制的时候，就可以生成各有侧重性的描述，而且通过对应关系，也使得结果更合理可信。</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-1.JPG" alt="example"></p>
+<p>因此本文就提出了一种新的image captioning的结构，通过对图像的region进行控制，从而生成更加多样化的描述。整体的出发点还是十分有意思的。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>在介绍完整的模型之前，先简单介绍一个前提：自然语言天然是层次化的结构。这点很好理解，在传统的自然语言句子中，有细粒度的单词，然后是短语，然后是句子，接着是段落，文章等。本文提出了可以利用文中的名词将整个句子分成多个名词块（noun chunks），每个名词块由核心名词和对应的描述词组成。而这些名词块又能和图像的不同区域对应起来。这样，多样化的句子就可以通过对这些块的不同考虑，也就是通过考虑图像中的不同区域，从而生成不同的句子描述。下图给了这样的一个例子:</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-2.JPG" alt="example 2"></p>
+<p>那么接下来就是模型的整体框架结构：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-3.JPG" alt="model structure"></p>
+<p>和传统的image captioning模型不同的地方在于：该模型的输入是图像$I$和一个region序列$R = (r_0, r_1, …, r_N)$，后者就作为控制信号控制整个生成过程。</p>
+<h3 id="Region序列"><a href="#Region序列" class="headerlink" title="Region序列"></a>Region序列</h3><p>作为整个模型中非常核心的一部分，region序列关系到整个模型的生成质量，那么首先需要解决两个问题，1）region如何得到，2）region的序列如何控制。第一个很好得到，直接使用Faster-RCNN对图像进行目标检测就可以了，就可以得到整个图像中的目标特征表示，针对第二个问题，本文使用了一个sorting network来解决这个问题，具体如下：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-5.JPG" alt="Sinkhorn Network"></p>
+<p>首先输入包括：1）Faster-RCNN输出的目标特征表示（2048维）；2）使用Glove对每个region的类别进行embedding，因为每个类别可以用单词表示；3）归一化之后的目标框的位置和大小（4维）。接下来利用上图中表示的全连阶层进行处理，最后将其映射到一个N-dimension的描述向量，如果同一个region有多个检测目标，那么将所有的表示向量做average-pooing，保证每个region有一个向量表示，这里需要说明的一点是：最后得到的向量的维度适合检测到的region数是一样的，也就是说会有N个region，这是因为接下来的Sinkhorn network处理的是一个仿真，这点需要注意。</p>
+<p>正如上文所述：当对所有的region进行处理之后，就得到了一个$N * N$的矩阵，接下来就可以通过Sinkhorn操作将其转化为一个 “soft”排列矩阵 $P$，具体就是执行L次连续的行归一化和列归一化，</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-6.JPG" alt="formulation 1"></p>
+<p>当经过L次处理之后，通过Hungarian算法将结果转换为排列矩阵，就得到了排好序的region表示，</p>
+<h3 id="Model-Details"><a href="#Model-Details" class="headerlink" title="Model Details"></a>Model Details</h3><p>解决了输入的问题，接下来就是模型的主体部分，因为模型加入了一个控制信号，因此再生成的时候，不仅需要考虑生成 句子的合理性，$p(y_t|R,I)$，同时需要考虑生成的句子是符合给定的region序列的，也即句子中的名词块的转换概率是和输入的region序列是一致的，$p(g_t|R,I)$，其中$g_t$是一个布尔类型的转换门。</p>
+<p>有了目标，接下来就是整个模型的生成过程了，因为要生成一个句子，因此RNN是一个非常好的框架，在生成每个隐层状态时，需要考虑前一个状态，当前的词，当前的region表示，即$h_t = RNN(\omega_t, r_t, h_{t-1})$，其中region的选择是通过上文提到的region转换门$g_t$实现的，具体如下：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-7.JPG" alt="formulation 2"></p>
+<p>那么接下来就是这个转换门$g_t$的计算方法了</p>
+<p>因为整个模型中都是使用LSTM作为base model的，因此，在计算转换门的值的时候也需要考虑LSTM的状态相关信息，本文首先计算出一个哨兵值：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-8.JPG" alt="formulation 3"></p>
+<p>其中$h_{t-1}$是前一个时刻的隐状态值，$m_t$是当前时刻的cell memory值，这个计算方法还是很有意思的，一般使用LSTM的时候只会使用隐状态或者cell memory值，这里直接使用了两个，在得到哨兵值之后，本文接着计算隐状态和哨兵值之间的相似度，以及隐状态和当前region中每个表示之间的相似度（从这里可以看出，每个region其实最后是使用了一个矩阵表示的，这点目前存疑）</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-9.JPG" alt="formulation 4"></p>
+<p>接下来就可以计算转换region的概率了，即</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-10.JPG" alt="formulation 5"></p>
+<p>计算出转换门$g_t$的值之后，也就意味着建立了控制信号$R​$和生成过程之间的联系，接下来本文继续利用上一阶段的哨兵机制进行描述的生成。首先还是根据视觉信息生成一个哨兵向量，该向量控制模型是否要考虑当前region：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-11.JPG" alt="formulation 7"></p>
+<p>接下来利用additive attention计算出在当前region和哨兵向量上的注意力分布：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-12.JPG" alt="formulation 8"></p>
+<p>常规操作，通过这样的方式，就可以得到一个加权向量，从而作为LSTM在当前时刻的输入：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-13.JPG" alt="formulation 9"></p>
+<p>正如前文提到的，模型需要考虑两个目标，生成 句子的合理性，$p(y_t|R,I)$，以及句子中的名词块的转换概率是和输入的region序列是一致的，$p(g_t|R,I)$，因此目标函数也需要考虑这两部分：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-14.JPG" alt="formulation 9"></p>
+<p>其中$y_{1:t-1}^<em>$和$r_{1:t}^</em>$表示ground truth，两部分的损失均用交叉熵计算得到。同时为了更好的训练模型，本文在使用交叉熵训练过之后，同时使用了强化学习进行调优。具体细节不在这里赘述了，感兴趣的可以看一下原文。</p>
+<p>以上就是整个模型的技术细节</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>本文使用Flickr30K entities和COCO entities两个数据集进行模型的训练和测试，同时根据region的不同设定（i.e.，a sequence of regions, a set of regions）对实验结果进行了评价，下文选取部分测试结果进行展示：</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-15.JPG" alt="result 1"></p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-16.JPG" alt="result 2"></p>
+<p>从实验结果上模型几乎在所有评价结果上都优于比较的baseline模型，充分说明了模型的有效性，同时本文也展示了一些实验结果，从而说明本文提出了控制方式的有效性</p>
+<p><img src="/2019/04/03/2019-04-02/2019-04-02-4.JPG" alt="case study"></p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>针对大多数image captioning模型的黑盒结构，本文提出了一种通过外部控制信号显式的控制整个文本的生成，根据region及其顺序的不同而生成不同描述重点的句子。首先，因为对图像中的信息更加明确，所以生成的结果更贴近图像，效果更好，其次通过对描述重点的显式考虑，使得最后的生成句子多样性更好。从这两个角度实现了描述生成质量的提升。文章的想法还是非常有意思的，可能对image caption这部分内容了解的不是很多，文中有些地方还是有些疑惑的，感觉作者并没有讲清楚。不过并不影响这是一篇非常值得读的文章。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+      
+    </div>
+
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/uploads/wechatpay.png" alt="zhkun_ustc 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Image/" rel="tag"><i class="fa fa-tag"></i> Image</a>
+          
+            <a href="/tags/Sentence/" rel="tag"><i class="fa fa-tag"></i> Sentence</a>
+          
+            <a href="/tags/Image-Caption/" rel="tag"><i class="fa fa-tag"></i> Image Caption</a>
+          
+            <a href="/tags/Sentinel/" rel="tag"><i class="fa fa-tag"></i> Sentinel</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/01/2019-03-29/" rel="next" title="Multi-step Reasoning via Recurrent Dual Attention for Visual Dialog">
+                <i class="fa fa-chevron-left"></i> Multi-step Reasoning via Recurrent Dual Attention for Visual Dialog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/14/2019-05-29/" rel="prev" title="ERNIE: Enhanced Language Representation with Informative Entities">
+                ERNIE: Enhanced Language Representation with Informative Entities <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/touxiang.jpg"
+                alt="zhkun_ustc" />
+            
+              <p class="site-author-name" itemprop="name">zhkun_ustc</p>
+              <p class="site-description motion-element" itemprop="description">慢慢来，慢慢来，做个有趣的人</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">3</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">32</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/little1tow" title="GitHub &rarr; https://github.com/little1tow" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.jianshu.com/u/023624abc05a" title="简书 &rarr; https://www.jianshu.com/u/023624abc05a" rel="noopener" target="_blank"><i class="fa fa-fw fa-heartbeat"></i>简书</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/zhkun_ustc" title="知乎 &rarr; https://www.zhihu.com/people/zhkun_ustc" rel="noopener" target="_blank"><i class="fa fa-fw fa-paperclip"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" title="微博 &rarr; https://weibo.com/2607749725/profile?rightmod=1&wvr=6&mod=personinfo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/734866493" title="QQ &rarr; 734866493"><i class="fa fa-fw fa-qq"></i>QQ</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Motivation"><span class="nav-number">1.</span> <span class="nav-text">Motivation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Region序列"><span class="nav-number">2.1.</span> <span class="nav-text">Region序列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Details"><span class="nav-number">2.2.</span> <span class="nav-text">Model Details</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">3.</span> <span class="nav-text">Experiments</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">4.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhkun_ustc</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">
+    <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+      本站访客数:<span id="busuanzi_value_site_pv"></span>
+    </span>
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+    <div class="powered-by"></div>
+      <span class="post-count">博客全站共34.2k字</span>
+      <span class="post-meta-divider">|</span>
+  </div>
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.7.1</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
